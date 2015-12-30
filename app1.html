@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Classic Stroop Test</title>
+        <!--<link href="css/main.css" rel="stylesheet"></link>-->
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+        <link rel="stylesheet" href="css/jquery.simplecolorpicker.css"></link>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.simplecolorpicker.js"></script>
+        <script src="app.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+            <!--
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">The Classic Stroop Test</a>
+                </div>
+            </nav>
+            -->
+
+            <div class="container-fluid col-xs-12">
+                <div class="container-fluid col-xs-8 col-xs-offset-2">
+                    <p><h1>The Classic Stroop Test</h1></p>
+
+                    <table class="table">
+                        <tr>
+                            <div class="form-group">
+                                <td><label for="name">Name</label></td>
+                                <td><input type="text" class="form-control" id="name" placeholder="Name" aria-describedby="name"></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                <td><label for="age">Age</label></td>
+                                <td><input type="text" class="form-control" id="age" placeholder="Age" aria-describedby="age"></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group" id="gender">
+                                <td><label for="Gender">Gender</td>
+                                <td><label><input type="radio" name="genderOptions" id="maleOption" value="Male">Male</label>
+                                <br><label><input type="radio" name="genderOptions" id="femaleOption" value="Female">Female</label></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group" id="testType">
+                                <td><label for="testType">Test Type</label></td>
+                                <td><label><input type="radio" name="typeOptions" id="colorOption" value="Color">Color Test</label>
+                                <br><label><input type="radio" name="typeOptions" id="textOption" value="Text">Text Test</label></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                <td><label for="testDuration">Test Duration</label></td>
+                                <td><input type="text" class="form-control" id="testDuration" placeholder="Test duration in seconds" aria-describedby="testDuration"></td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                <td><label for="nColors">No. of Colors</label></td>
+                                <td><input type="text" class="form-control" id="number" placeholder="number" aria-describedby="nColors"></td>
+                            </div>
+                        </tr>
+                    </table>
+
+                    <div class="container-fluid col-xs-6 col-xs-offset-3">
+                        <input class="btn btn-default" type="button" data-toggle="modal" data-target="#colorModal" value="Set Colors" id="setColors">
+                        <input class="btn btn-default" type="button" value="Test" id="test" onclick="clog()">
+                        <input class="btn btn-default" type="button" value="Train">
+                    </div>
+
+                </div> <!-- Container-XS-8 -->
+
+                <div class="modal fade" tabindex="-1" role="dialog" id="colorModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Colors</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <script>
+                                    $('select[name="colorpicker-picker-longlist"]').simplecolorpicker();
+                                    $('select[name="colorpicker-picker-longlist"]').simplecolorpicker('selectColor', '#7bd148');
+                                    $('select[name="colorpicker-picker-longlist"]').simplecolorpicker('destroy');
+                                </script>
+                                <p>Select the colors</p>
+                                <select name="colorpicker-picker-longlist">
+                                  <option value="#ac725e">#ac725e</option>
+                                  <option value="#d06b64">#d06b64</option>
+                                  <option value="#f83a22">#f83a22</option>
+                                  <option value="#fa573c">#fa573c</option>
+                                  <option value="#ff7537">#ff7537</option>
+                                  <option value="#ffad46">#ffad46</option>
+                                  <option value="#42d692">#42d692</option>
+                                  <option value="#16a765">#16a765</option>
+                                  <option value="#7bd148">#7bd148</option>
+                                  <option value="#b3dc6c">#b3dc6c</option>
+                                  <option value="#fbe983">#fbe983</option>
+                                  <option value="#fad165">#fad165</option>
+                                  <option value="#92e1c0">#92e1c0</option>
+                                  <option value="#9fe1e7">#9fe1e7</option>
+                                  <option value="#9fc6e7">#9fc6e7</option>
+                                  <option value="#4986e7">#4986e7</option>
+                                  <option value="#9a9cff">#9a9cff</option>
+                                  <option value="#b99aff">#b99aff</option>
+                                  <option value="#c2c2c2">#c2c2c2</option>
+                                  <option value="#cabdbf">#cabdbf</option>
+                                  <option value="#cca6ac">#cca6ac</option>
+                                  <option value="#f691b2">#f691b2</option>
+                                  <option value="#cd74e6">#cd74e6</option>
+                                  <option value="#a47ae2">#a47ae2</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+            </div>
+        </div>
+    </body>
+</html>
