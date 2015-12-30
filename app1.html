@@ -60,7 +60,7 @@
                             </div>
                         </tr>
                         <tr>
-                            <div class="form-group">
+                            <div class="form-group" id="integerForm">
                                 <td><label for="nColors">No. of Colors</label></td>
                                 <td><input type="text" class="form-control" id="number" placeholder="number" aria-describedby="nColors"></td>
                             </div>
@@ -69,8 +69,8 @@
 
                     <div class="container-fluid col-xs-6 col-xs-offset-3">
                         <input class="btn btn-default" type="button" data-toggle="modal" data-target="#colorModal" value="Set Colors" id="setColors">
-                        <input class="btn btn-default" type="button" value="Test" id="test" onclick="clog()">
-                        <input class="btn btn-default" type="button" value="Train">
+                        <input class="btn btn-default" type="button" value="Test" id="test"> <!-- onclick="clog()" -->
+                        <input class="btn btn-default" type="button" value="Train" id="train">
                     </div>
 
                 </div> <!-- Container-XS-8 -->
@@ -83,14 +83,8 @@
                                 <h4 class="modal-title">Colors</h4>
                             </div>
                             <div class="modal-body">
-
-                                <script>
-                                    $('select[name="colorpicker-picker-longlist"]').simplecolorpicker();
-                                    $('select[name="colorpicker-picker-longlist"]').simplecolorpicker('selectColor', '#7bd148');
-                                    $('select[name="colorpicker-picker-longlist"]').simplecolorpicker('destroy');
-                                </script>
                                 <p>Select the colors</p>
-                                <select name="colorpicker-picker-longlist">
+                                <select name="colorpicker-modal-picker">
                                   <option value="#ac725e">#ac725e</option>
                                   <option value="#d06b64">#d06b64</option>
                                   <option value="#f83a22">#f83a22</option>
