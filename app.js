@@ -1,10 +1,10 @@
-$(document).ready(function(){
+$(document).ready(function() {
 $("#setColors").click(storeInput);
 //$("#train").click();
 //$("#test").click();
 });
 
-var storeInput = function(){
+var storeInput = function() {
 
     var name = $("#name").val();
     var age = $("#age").val();
@@ -22,9 +22,17 @@ var storeInput = function(){
     console.log(nColors);
     */
 
-    $('select[name="colorpicker-modal-picker"]').simplecolorpicker();
-    $('select[name="colorpicker-modal-picker"]').simplecolorpicker('selectColor', '#7bd148');
-    $('select[name="colorpicker-modal-picker"]').simplecolorpicker('destroy');    
+
+    //$(".color1").colorpicker();
+    var str = ".color"
+    for(var i = 1; i <= nColors; ++i) {
+        console.log((str+i));
+        $((str+i)).colorpicker();
+    }
+
+    //$('select[name="colorpicker-modal-picker"]').simplecolorpicker({picker: true});
+    //$('select[name="colorpicker-modal-picker"]').simplecolorpicker('selectColor', '#7bd148');
+    //$('select[name="colorpicker-modal-picker"]').simplecolorpicker('destroy');
 
     
 };
