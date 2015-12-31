@@ -89,6 +89,7 @@ function getRandomInt(min, max) {
 function goHome() {
     $("#atest").toggle(false);
     $("#aform").toggle(true);
+    $("#buttonArea").html("");
 }
 
 function showHidden() {
