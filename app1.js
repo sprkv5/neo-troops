@@ -31,31 +31,6 @@ var storeInput = function() {
     console.log(nColors);
     */
 
-    str1 = ".color";
-    var created = [false, false, false, false, false, false, false];
-    for(var i = 1; i <= 6; ++i) {
-        //console.log((str1+i));
-        if(created[i]){
-            $((str1+i)).colorpicker('destroy');
-            created[i] = false;
-        }
-    }
-    for(var i = 1; i <= nColors; ++i) {
-        //console.log((str1+i));
-        if(!created[i]){
-            $((str1+i)).colorpicker({horizontal:true});
-            created[i] = true;
-        }
-    }
-
-    str2 = ".text";
-    console.log(str2);
-    for(var i = ++nColors ; i <= 6; ++i) {
-        //console.log((str2+i));        
-        $((str1+i)).toggle(false);
-        $((str2+i)).toggle(false);
-    }
-
 };
 
 var startTest = function() {
@@ -65,26 +40,26 @@ var startTest = function() {
 
     hexes = [];
     texts = [];
-    str1 = ".color";
-    str2 = "#text";
-    //console.log($("#text1").val());
-    //console.log((str2+1));
-    //console.log($((str2+1)).val());
-    for(var i = 1; i < nColors; ++i) {
-        hexes.push($((str1+i)).colorpicker('getValue'));
-        console.log("pushed");
-        texts.push($((str2+i)).val());
-    }
-    //console.log(hexes);
-    //console.log(texts);
-
-    for(var i = 1; i <= nColors; ++i) {
-        var ctext = texts[i];
-        var chex = hexes[i];
-        console.log(ctext);
-        console.log(chex);
-        var button = '<button class="btn" style="background-color:' + chex + '">' + ctext + '</button>'
-        $("#buttonArea").append(button);
+    var count = 0;
+    $("input[name=colorOptions]:checked").each(function(){
+        hexes.push($(this).val());
+        texts.push($(this).attr("id"));
+        count += 1;
+    });
+    console.log(hexes);
+    console.log(texts);
+    console.log(count);
+    console.log(nColors);
+    if(count == nColors) {
+        console.log("hi");
+        for(var i = 0; i < nColors; ++i) {
+            var btext = texts[i];
+            var bhex = hexes[i];
+            console.log(btext);
+            console.log(bhex);
+            var button = '<button class="btn" style="background-color:' + bhex + '" id="t' + btext +'">' + btext + '</button> &nbsp;'
+            $("#buttonArea").append(button);
+        }
     }
 
 
@@ -114,6 +89,7 @@ function getRandomInt(min, max) {
 function goHome() {
     $("#atest").toggle(false);
     $("#aform").toggle(true);
+    $("#buttonArea").html("");
 }
 
 function showHidden() {
