@@ -10,7 +10,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.simplecolorpicker.js"></script>
         <script src="js/bootstrap-colorpicker.min.js"></script>
-        <script src="app.js"></script>
+        <script src="app1.js"></script>
     </head>
 
     <body>
@@ -89,72 +89,12 @@
                             <div class="modal-body">
                                 <p>Select the colors</p>
                                 <table>
-                                    <tr>
-                                        <div class="c1">
-                                            <td>
-                                                <div class="input-group color1">
-                                                <input type="text" value="" class="form-control" />
-                                                <span class="input-group-addon"><i></i></span>
-                                                </div>
-                                            </td>
-                                            <td><div class="text1"><input type="text" class="form-control" placeholder="Name of color" id="text1"></div></td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="c2">
-                                            <td>
-                                                <div class="input-group color2">
-                                                <input type="text" value="" class="form-control" />
-                                                <span class="input-group-addon"><i></i></span>
-                                                </div>
-                                            </td>
-                                            <td><div class="text2"><input type="text" class="form-control" placeholder="Name of color" id="text2"></div></td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="c3">
-                                            <td>
-                                                <div class="input-group color3">
-                                                <input type="text" value="" class="form-control" />
-                                                <span class="input-group-addon"><i></i></span>
-                                                </div>
-                                            </td>
-                                            <td><div class="text3"><input type="text" class="form-control" placeholder="Name of color" id="text3"></div></td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="c4">
-                                            <td>
-                                                <div class="input-group color4">
-                                                <input type="text" value="" class="form-control" />
-                                                <span class="input-group-addon"><i></i></span>
-                                                </div>
-                                            </td>
-                                            <td><div class="text4"><input type="text" class="form-control" placeholder="Name of color" id="text4"></div></td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="c5">
-                                            <td>
-                                                <div class="input-group color5">
-                                                <input type="text" value="" class="form-control" />
-                                                <span class="input-group-addon"><i></i></span>
-                                                </div>
-                                            </td>
-                                            <td><div class="text5"><input type="text" class="form-control" placeholder="Name of color" id="text5"></div></td>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="c6">
-                                            <td>
-                                                <div class="input-group color6">
-                                                <input type="text" value="" class="form-control" />
-                                                <span class="input-group-addon"><i></i></span>
-                                                </div>
-                                            </td>
-                                            <td><div class="text6"><input type="text" class="form-control" placeholder="Name of color" id="text6"></div></td>
-                                        </div>
-                                    </tr>
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Red" value="#dc2127">Red</label></tr></td>
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Green" value="#51b749">Green</label></tr></td>
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Blue" value="#5484ed">Blue</label></tr></td>
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Yellow" value="#fbd75b">Yellow</label></tr></td>
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Purple" value="#cd74e6">Purple</label></tr></td><!-- #a47ae2 or #cd74e6 --->
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Gray" value="#c2c2c2">Gray</label></tr></td>
                                 </table>
                             </div>
 
@@ -171,8 +111,9 @@
                     <div class="jumbotron">
                         <p id="coltext" style="text-align:center">Hello</p>
                     </div>
-                    <div class="container-fluid" id="buttonArea"></div>
+                    <div class="container-fluid col-xs-8" id="buttonArea"></div>
                     <div class="container-fluid col-xs-8">
+                        <br>
                         <input class="btn btn-default" type="button" value="Stop" id="stop">
                         <input class="btn btn-default" type="button" value="Back" id="back">
                     </div>
