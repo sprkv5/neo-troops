@@ -11,9 +11,13 @@ $(document).ready(function() {
     //$("#stop").click(function(){
     //    $("#coltext").html("This Works!");
     //});
+    //$("#stop").click(function(){
+    //    $("#coltext").text("This Works Too!").css("color", "red");
+    //});
+    //$("#stop").click(testQuery("Changes", "#a47ae2"));
 });
 
-var storeInput = function() {
+function storeInput() {
 
     name = $("#name").val();
     age = $("#age").val();
@@ -33,7 +37,7 @@ var storeInput = function() {
 
 };
 
-var startTest = function() {
+function startTest() {
 
     $("#atest").toggle(true);
     $("#aform").toggle(false);
@@ -46,10 +50,12 @@ var startTest = function() {
         texts.push($(this).attr("id"));
         count += 1;
     });
-    console.log(hexes);
-    console.log(texts);
-    console.log(count);
-    console.log(nColors);
+
+    //console.log(hexes);
+    //console.log(texts);
+    //console.log(count);
+    //console.log(nColors);
+
     if(count == nColors) {
         console.log("hi");
         for(var i = 0; i < nColors; ++i) {
@@ -58,10 +64,26 @@ var startTest = function() {
             console.log(btext);
             console.log(bhex);
             var button = '<button class="btn" style="background-color:' + bhex + '" id="t' + btext +'">' + btext + '</button> &nbsp;'
-            $("#buttonArea").append(button);
+            $("#buttonArea").append(button) // inserting the colored buttons;
         }
     }
 
+    // Display 3, 2, 1 and start test - not working
+    window.setTimeout(testQuery("3","#000000"),1000);
+    window.setTimeout(testQuery("2","#000000"),3000);
+    window.setTimeout(testQuery("1","#000000"),5000);
+
+    // Figure out how to handle the colored buttons, use testQuery() to change coloured text in the textArea
+    timeout();
+    function timeout() {
+        setTimeout(function() {
+            //Do something
+            
+
+            //Then call parent to set up loop
+            timeout();
+        }, testDuration*1000); //The duration of the test.
+    }
 
     var rand1 = getRandomInt(1, nColors);
     var rand2 = getRandomInt(1, nColors);
@@ -94,4 +116,8 @@ function goHome() {
 
 function showHidden() {
     $("#atest").toggle();
+}
+
+function testQuery(text, hex){
+    $("#coltext").text(text).css("color", hex);
 }
