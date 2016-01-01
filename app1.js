@@ -42,6 +42,14 @@ function startTest() {
     $("#atest").toggle(true);
     $("#aform").toggle(false);
 
+    console.log("The Classic Stroop Test Report")
+    console.log("Name: " + name);
+    console.log("Age: " + age);
+    console.log("Gender: " + gender);
+    console.log("Test: " + testType);
+    console.log("Duration: " + testDuration + " seconds");
+    console.log("No. of Colors: " + nColors);
+
     hexes = [];
     texts = [];
     var count = 0;
@@ -51,13 +59,12 @@ function startTest() {
         count += 1;
     });
 
-    //console.log(hexes);
-    //console.log(texts);
+    console.log("Color Names:\n" + texts);
+    console.log("Color Codes:\n" + hexes);
     //console.log(count);
     //console.log(nColors);
 
     if(count == nColors) {
-        console.log("hi");
         for(var i = 0; i < nColors; ++i) {
             var btext = texts[i];
             var bhex = hexes[i];
@@ -69,11 +76,18 @@ function startTest() {
     }
 
     // Display 3, 2, 1 and start test
+    var startTime, oldTime, endTime, timeElapsed, duration;
+    if(testDuration) {
+        duration = testDuration * 1000;
+    } else {
+        duration = null;
+    }
 
     var countdown = 4;
     var countText = ["", "1", "2", "3", "Ready"];
     timeout();
 
+    var rand1, rand2;
     function timeout() {
         setTimeout(function() {
             //Do something
@@ -81,25 +95,54 @@ function startTest() {
 
             //Then call parent to set up loop
             if(countdown--){timeout();}
-            else{$(".testButton:first").trigger("click");}
+            else{
+                do{
+                    rand1 = randomIntGen(0, nColors-1);
+                    rand2 = randomIntGen(0, nColors-1);
+                }while(rand1 == rand2);
+
+                if(rand1 != rand2) {
+                    console.log("\n---START---\n");
+                    startTime = new Date;
+                    oldTime = startTime;
+                    if (duration) {
+                        setTimeout( function() {
+                            endTime = new Date;
+                            console.log("\n----END----\n");
+                            console.log("Time since start: " + (endTime - startTime) + "ms");
+                            console.log("Time test started: " + startTime);
+                            console.log("Time test ended: " + endTime);
+                            $("#stop").trigger("click");
+                        }, duration);
+                    }
+                    testQuery(texts[rand1], hexes[rand2]);
+                }
+            }
         }, 1000);
     }
 
-    var rand1, rand2, orand1, orand2;
     $(".testButton").on("click", dispEvent);
 
     function dispEvent() {
-        /*
+        currentTime = new Date;
+        timeElapsed = currentTime - oldTime;
         var checkVar1 = $("#coltext").css("color");
-        var checkVar2 = $(this).css("background-color");
-        if(checkVar1 == checkVar2) {alert("Correct");} else {alert("Wrong");}
-        */
+        var checkVar2 = $(this).css("backgroundColor");
+        console.log("Color of text: " + checkVar1 + "\nColor selected: " + checkVar2);
+        if(checkVar1 == checkVar2) {
+            console.log("Correct\n");
+        } else {
+            console.log("Wrong\n");
+        }
+        console.log("Time for Response: " + timeElapsed + " ms");
+        console.log("Time since Start: " + (currentTime - startTime) + " ms");
+        oldTime = currentTime;
 
         do{
-            rand1 = randomIntGen(0, nColors);
-            rand2 = randomIntGen(0, nColors);
+            rand1 = randomIntGen(0, nColors-1);
+            rand2 = randomIntGen(0, nColors-1);
         }while(rand1 == rand2);
-        console.log("hi");
+
         if(rand1 != rand2) {testQuery(texts[rand1], hexes[rand2]);}
     } 
 
@@ -165,6 +208,54 @@ function testQuery(text, hex){
     $("#coltext").text(text).css("color", hex).css("font-size", "500%").css("font-weight", "bold");
 }
 
+/* CSS Hooks */
+function _register_jquery_get_hex_color(newname,styleattr) {
+    $.cssHooks[newname] = {
+        get: function(elem) {
+            if (elem.currentStyle)
+                var bg = elem.currentStyle[styleattr];
+            else if (window.getComputedStyle)
+                var bg = document.defaultView.getComputedStyle(elem,
+                    null).getPropertyValue(styleattr);
+            if (bg.search("rgb") == -1)
+                return bg;
+            else {
+                bg = bg.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                function hex(x) {
+                    return ("0" + parseInt(x).toString(16)).slice(-2);
+                }
+                return "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
+            }
+        }
+    }
+}
+_register_jquery_get_hex_color("backgroundColor","background-color");
+_register_jquery_get_hex_color("color","color");
+
+/*
+    _register_jquery_get_hex_color("borderColor","border-color");
+    _register_jquery_get_hex_color("newName","old-name");
+*/
+
+/* $.cssHooks.backgroundColor = {
+    get: function(elem) {
+        if (elem.currentStyle)
+            var bg = elem.currentStyle["background-color"];
+        else if (window.getComputedStyle)
+            var bg = document.defaultView.getComputedStyle(elem,
+                null).getPropertyValue("background-color");
+        if (bg.search("rgb") == -1)
+            return bg;
+        else {
+            bg = bg.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            function hex(x) {
+                return ("0" + parseInt(x).toString(16)).slice(-2);
+            }
+            return "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
+        }
+    }
+}
+*/
 // returns a random integer between min and max (both inclusive)
 //function getRandomInt(min, max) {
 //    return Math.floor(Math.random() * (max - min + 1) + min);
