@@ -2,6 +2,7 @@ $(document).ready(function() {
     $("#atest").toggle(false);
 
     var name, age, gender, testType, testDuration, nColors, str1, str2, texts, hexes, engine, dist;
+    var startTime, oldTime, endTime, timeElapsed;  /* duration  - not declaring it with var and assigning it with a value makes it global. */
 
     $("#setColors").click(storeInput);
     $("#train").click(showHidden);
@@ -12,6 +13,14 @@ $(document).ready(function() {
     //    $("#coltext").html("This Works!");
     //});
     $("#stop").click(function(){
+
+        if(duration == null) {
+            endTime = new Date;
+            console.log("\n----END----\n");
+            console.log("Time since start: " + (endTime - startTime) + " ms");
+            console.log("Time test started: " + startTime);
+            console.log("Time test ended: " + endTime);
+        }
         $("#coltext").text("Time Up!").css("color", "black");
         $("div").remove(".testButton");
         $(".testButton").toggle(false);
@@ -76,7 +85,7 @@ function startTest() {
     }
 
     // Display 3, 2, 1 and start test
-    var startTime, oldTime, endTime, timeElapsed, duration;
+
     if(testDuration) {
         duration = testDuration * 1000;
     } else {
@@ -109,7 +118,7 @@ function startTest() {
                         setTimeout( function() {
                             endTime = new Date;
                             console.log("\n----END----\n");
-                            console.log("Time since start: " + (endTime - startTime) + "ms");
+                            console.log("Time since start: " + (endTime - startTime) + " ms");
                             console.log("Time test started: " + startTime);
                             console.log("Time test ended: " + endTime);
                             $("#stop").trigger("click");
@@ -145,45 +154,6 @@ function startTest() {
 
         if(rand1 != rand2) {testQuery(texts[rand1], hexes[rand2]);}
     } 
-
-    // ---
-    // Figure out how to handle the colored buttons
-    /*var start = new Date, totalTime, duration = testDuration * 1000;
-    do{
-        // The test
-
-        var rand1 = getRandomInt(1, nColors);
-        var rand2 = getRandomInt(1, nColors);
-        while(rand2 == rand1){
-            rand2 = getRandomInt(1, nColors);
-        }
-        console.log(rand1);
-        console.log(rand2);
-
-        var queryStart = new Date;
-        testQuery(texts[rand1], hexes[rand2]);
-        timeout();
-        do {
-            var buttons = document.getElementsByClassName("testButton");
-            var buttonsCount = buttons.length;
-            for(var i = 0; i <= buttonsCount; i++) {
-                buttons[i].onclick = function() {
-                    return(this.id);
-                }
-            }
-
-            triggeredBy = $(".testButton").click(function() { return(this.id); });
-            console.log(triggeredBy);
-            totalTime = new Date - start;
-        } while(totalTime < duration)
-        
-                    
-
-        totalTime = new Date - start;
-        var timeElapsed = totalTime / 1000;
-        console.log(timeElapsed);
-    } while (totalTime < duration);
-    */
 }
 
 // returns a random integer between min and max (both inclusive)
@@ -256,6 +226,7 @@ _register_jquery_get_hex_color("color","color");
     }
 }
 */
+
 // returns a random integer between min and max (both inclusive)
 //function getRandomInt(min, max) {
 //    return Math.floor(Math.random() * (max - min + 1) + min);
@@ -264,4 +235,3 @@ _register_jquery_get_hex_color("color","color");
 //rand1 = randomIntGen(0, nColors);
 //rand2 = randomIntGen(0, nColors);
 //testQuery(texts[rand1], hexes[rand2]);
-
