@@ -11,10 +11,18 @@ $(document).ready(function() {
     //$("#stop").click(function(){
     //    $("#coltext").html("This Works!");
     //});
-    //$("#stop").click(function(){
-    //    $("#coltext").text("This Works Too!").css("color", "red");
-    //});
-    //$("#stop").click(testQuery("Changes", "#a47ae2"));
+    $("#stop").click(function(){
+        $("#coltext").text("Time Up!").css("color", "black");
+        $("div").remove(".testButton");
+        $(".testButton").toggle(false);
+        //$("#textArea").html("");
+        $("#buttonArea").html("");
+    });
+
+    $("#textArea").html("");
+    $("#buttonArea").html("");
+
+    //$("#stop").click(testQuery("Time Up!", "#a47ae2"));
 });
 
 function storeInput() {
@@ -30,6 +38,7 @@ function storeInput() {
 
 function startTest() {
 
+    $("#textArea").html("");
     $("#atest").toggle(true);
     $("#aform").toggle(false);
 
@@ -59,32 +68,33 @@ function startTest() {
         }
     }
 
-    // Display 3, 2, 1 and start test - not working
+    // Display 3, 2, 1 and start test
 
-    var countdown = 5;
+    var countdown = 4;
+    var countText = ["", "1", "2", "3", "Ready"];
     timeout();
 
     function timeout() {
         setTimeout(function() {
             //Do something
-            testQuery(countdown, "#000000");
+            testQuery(countText[countdown], "#000000");
 
             //Then call parent to set up loop
-            if(--countdown){timeout();}
+            if(countdown--){timeout();}
+            else{$(".testButton:first").trigger("click");}
         }, 1000);
     }
 
     var rand1, rand2, orand1, orand2;
-    //rand1 = randomIntGen(0, nColors);
-    //rand2 = randomIntGen(0, nColors);
-    //testQuery(texts[rand1], hexes[rand2]);
     $(".testButton").on("click", dispEvent);
 
     function dispEvent() {
+        /*
         var checkVar1 = $("#coltext").css("color");
-        //console.log(this);
         var checkVar2 = $(this).css("background-color");
         if(checkVar1 == checkVar2) {alert("Correct");} else {alert("Wrong");}
+        */
+
         do{
             rand1 = randomIntGen(0, nColors);
             rand2 = randomIntGen(0, nColors);
@@ -134,11 +144,6 @@ function startTest() {
 }
 
 // returns a random integer between min and max (both inclusive)
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-// returns a random integer between min and max (both inclusive)
 function randomIntGen(min, max) {
         engine = Random.engines.mt19937().autoSeed();
         dist = Random.integer(min, max);
@@ -159,3 +164,13 @@ function showHidden() {
 function testQuery(text, hex){
     $("#coltext").text(text).css("color", hex).css("font-size", "500%").css("font-weight", "bold");
 }
+
+// returns a random integer between min and max (both inclusive)
+//function getRandomInt(min, max) {
+//    return Math.floor(Math.random() * (max - min + 1) + min);
+//}
+
+//rand1 = randomIntGen(0, nColors);
+//rand2 = randomIntGen(0, nColors);
+//testQuery(texts[rand1], hexes[rand2]);
+
