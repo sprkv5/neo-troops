@@ -10,6 +10,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.simplecolorpicker.js"></script>
         <script src="js/bootstrap-colorpicker.min.js"></script>
+        <script src="js/random.min.js"></script>
         <script src="app1.js"></script>
     </head>
 
@@ -58,13 +59,13 @@
                         <tr>
                             <div class="form-group">
                                 <td><label for="testDuration">Test Duration</label></td>
-                                <td><input type="text" class="form-control" id="testDuration" placeholder="Test duration in seconds" aria-describedby="testDuration"></td>
+                                <td><input type="text" class="form-control" id="testDuration" placeholder="Seconds in integer or leave blank" aria-describedby="testDuration"></td>
                             </div>
                         </tr>
                         <tr>
                             <div class="form-group" id="integerForm">
                                 <td><label for="nColors">No. of Colors</label></td>
-                                <td><input type="text" class="form-control" id="number" placeholder="number" aria-describedby="nColors"></td>
+                                <td><input type="text" class="form-control" id="number" placeholder="Integer {4, 5, 6}" aria-describedby="nColors"></td>
                             </div>
                         </tr>
                     </table>
@@ -94,7 +95,7 @@
                                     <tr><td><label><input type="checkbox" name="colorOptions" id="Blue" value="#5484ed">Blue</label></tr></td>
                                     <tr><td><label><input type="checkbox" name="colorOptions" id="Yellow" value="#fbd75b">Yellow</label></tr></td>
                                     <tr><td><label><input type="checkbox" name="colorOptions" id="Purple" value="#cd74e6">Purple</label></tr></td><!-- #a47ae2 or #cd74e6 --->
-                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Gray" value="#c2c2c2">Gray</label></tr></td>
+                                    <tr><td><label><input type="checkbox" name="colorOptions" id="Brown" value="#ac725e">Brown</label></tr></td> <!-- #d06b64 -->
                                 </table>
                             </div>
 
@@ -109,7 +110,7 @@
 
                 <div class="container-fluid col-xs-8 col-xs-offset-2 atest" id="atest">
                     <div class="jumbotron">
-                        <p id="coltext" style="text-align:center">Hello</p>
+                        <p id="coltext" style="text-align:center"></p>
                     </div>
                     <div class="container-fluid col-xs-8" id="buttonArea"></div>
                     <div class="container-fluid col-xs-8">
